@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'appinio_social_share_platform_interface.dart';
 
 class AppinioSocialShare {
@@ -8,18 +6,15 @@ class AppinioSocialShare {
   }
 
   Future<String> shareToWhatsapp(String message, {String? filePath}) {
-    return AppinioSocialSharePlatform.instance
-        .shareToWhatsapp(message, filePath: filePath);
+    return AppinioSocialSharePlatform.instance.shareToWhatsapp(message, filePath: filePath);
   }
 
   Future<String> shareToTelegram(String message, {String? filePath}) {
-    return AppinioSocialSharePlatform.instance
-        .shareToTelegram(message, filePath: filePath);
+    return AppinioSocialSharePlatform.instance.shareToTelegram(message, filePath: filePath);
   }
 
   Future<String> shareToTwitter(String message, {String? filePath}) {
-    return AppinioSocialSharePlatform.instance
-        .shareToTwitter(message, filePath: filePath);
+    return AppinioSocialSharePlatform.instance.shareToTwitter(message, filePath: filePath);
   }
 
   Future<String> shareToInstagramDirect(String message) {
@@ -43,8 +38,7 @@ class AppinioSocialShare {
   }
 
   Future<String> shareToFacebook(String hashtag, String filePath) {
-    return AppinioSocialSharePlatform.instance
-        .shareToFacebook(hashtag, filePath);
+    return AppinioSocialSharePlatform.instance.shareToFacebook(hashtag, filePath);
   }
 
   Future<String> shareToInstagramStory(String appId,
@@ -79,24 +73,11 @@ class AppinioSocialShare {
         attributionURL: attributionURL);
   }
 
-  ///works only for android
-  Future<String> shareToTiktokStatus(String filePath) {
-    return AppinioSocialSharePlatform.instance.shareToTiktokStatus(filePath);
-  }
-
-  Future<String> shareToTiktokPost(String videoFile) {
-    if (Platform.isAndroid) return shareToTiktokStatus(videoFile);
-    return AppinioSocialSharePlatform.instance.shareToTiktokPost(videoFile);
-  }
-
-  Future<String> shareToSystem(String title, String message,
-      {String? filePath}) {
-    return AppinioSocialSharePlatform.instance
-        .shareToSystem(title, message, filePath: filePath);
+  Future<String> shareToSystem(String title, String message, {String? filePath}) {
+    return AppinioSocialSharePlatform.instance.shareToSystem(title, message, filePath: filePath);
   }
 
   Future<String> shareToSMS(String message, {String? filePath}) {
-    return AppinioSocialSharePlatform.instance
-        .shareToSMS(message, filePath: filePath);
+    return AppinioSocialSharePlatform.instance.shareToSMS(message, filePath: filePath);
   }
 }

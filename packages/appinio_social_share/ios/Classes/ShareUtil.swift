@@ -2,7 +2,6 @@ import Photos
 import FBSDKCoreKit
 import FBSDKShareKit
 import Social
-import TikTokOpenSDK
 import MobileCoreServices
 
 
@@ -30,7 +29,7 @@ public class ShareUtil{
 
     
     public func getInstalledApps(result: @escaping FlutterResult){
-        let apps = [["instagram","instagram"],["facebook-stories","facebook_stories"],["whatsapp","whatsapp"],["tg","telegram"],["fb-messenger","messenger"],["tiktok","tiktok"],["instagram-stories","instagram_stories"],["twitter","twitter"],["sms","message"]]
+        let apps = [["instagram","instagram"],["facebook-stories","facebook_stories"],["whatsapp","whatsapp"],["tg","telegram"],["fb-messenger","messenger"],["instagram-stories","instagram_stories"],["twitter","twitter"],["sms","message"]]
         var output:[String: Bool] = [:]
         for app in apps {
             if(UIApplication.shared.canOpenURL(URL(string:(app[0])+"://")!)){
@@ -73,35 +72,6 @@ public class ShareUtil{
         return false
     }
 
-
-
-    public func shareToTiktok(args : [String: Any?],result: @escaping FlutterResult){
-        let images = args[argImages] as? [String]
-        let videoFile = args[argVideoFile] as? String
-
-
-        let request = TikTokOpenSDKShareRequest()
-
-        request.mediaType = images == nil ? TikTokOpenSDKShareMediaType.video : TikTokOpenSDKShareMediaType.image
-        var mediaLocalIdentifiers: [String] = []
-
-
-        if(videoFile==nil){
-            mediaLocalIdentifiers.append(contentsOf: images!)
-        }else{
-            mediaLocalIdentifiers.append(videoFile!)
-        }
-
-              request.localIdentifiers = mediaLocalIdentifiers
-              DispatchQueue.main.async {
-                let a = request.send(completionBlock: { response in
-                  print("Response from TikTok")
-                  print(response.errCode.rawValue)
-                  print(response.shareState.rawValue)
-                })
-              }
-        result(SUCCESS)
-    }
 
 
     func shareVideoToInstagramFeed(args : [String: Any?],result: @escaping FlutterResult) {
